@@ -12,37 +12,37 @@ it('renders without crashing', () => {
 
 it('inDateTimeRange returns false', () => {
   const day1 = {
-    start_on: new Date("2016-12-26T00:00:00.000Z"),
-    end_on: new Date("2017-12-26T00:00:00.000Z")
+    starts_on: new Date("2016-12-26T00:00:00.000Z"),
+    ends_on: new Date("2017-12-26T00:00:00.000Z")
   };
   const d1 = new Date("2018-01-20T09:47:49.309Z");
-  const result = inDateTimeRange(day1.start_on, day1.end_on, d1);
+  const result = inDateTimeRange(day1.starts_on, day1.ends_on, d1);
   expect(result).toBe(false);
 });
 
 it('inDateTimeRange returns true', () => {
   const day2 = {
     starts_on: new Date("2017-12-29T00:00:00.000Z"),
-    end_on: new Date("2018-03-28T00:00:00.000Z")
+    ends_on: new Date("2018-03-28T00:00:00.000Z")
   };
   const d1 = new Date("2018-01-20T09:47:49.309Z");
-  const result = inDateTimeRange(day2.start_on, day2.end_on, d1);
-  expect(result).toBe(false);
+  const result = inDateTimeRange(day2.starts_on, day2.ends_on, d1);
+  expect(result).toBe(true);
 });
 
 
 it('reducers return only active variants', () => {
   const day1 = {
-    start_on: new Date("2016-12-26T00:00:00.000Z"),
-    end_on: new Date("2017-12-26T00:00:00.000Z")
+    starts_on: new Date("2016-12-26T00:00:00.000Z"),
+    ends_on: new Date("2017-12-26T00:00:00.000Z")
   };
   const day2 = {
     starts_on: new Date("2017-12-29T00:00:00.000Z"),
-    end_on: new Date("2018-03-28T00:00:00.000Z")
+    ends_on: new Date("2018-03-28T00:00:00.000Z")
   };
   const variants = [day1, day2];
   const d1 = new Date("2018-01-20T09:47:49.309Z");
-  const result = inDateTimeRange(day1.start_on, day1.end_on, d1);
+  const result = inDateTimeRange(day1.starts_on, day1.ends_on, d1);
   expect(result).toBe(false);
-  
+
 });
