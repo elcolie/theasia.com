@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {activeVariants, convertRawVariants, inDateTimeRange, selectPlan} from "./utils";
+import {activeVariants, convertRawVariants, inDateTimeRange, minPax, selectPlan} from "./utils";
 
 const plan1 = {
   pax: 2,
@@ -82,4 +82,9 @@ it('test pax logic got plan2', () => {
   const qtyAdults = 3;
   const qtyChildren = 0;
   expect(selectPlan(priceList, qtyAdults, qtyChildren)).toBe(24);
+});
+
+it('test get minimux pax from priceList', () => {
+  const result = minPax(priceList);
+  expect(result).toBe(plan1);
 });

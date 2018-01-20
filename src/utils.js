@@ -31,12 +31,33 @@ export const calPrice = (price, qtyAdults, qtyChildren) => {
   return price.adult_price * qtyAdults + price.child_price * qtyChildren;
 };
 
-export const selectPlan = (priceList, qtyAdults, qtyChildren) => {
-  let ans = undefined;
+export const minPax = (priceList) => {
+  let min = Number.MAX_SAFE_INTEGER;
+  let tmp = undefined;
   priceList.forEach((price) => {
-    if (price.pax <= qtyAdults) {
-      ans = calPrice(price, qtyAdults, qtyChildren);
+    if (price.pax < min) {
+      min = price.pax;  //Change the value
+      tmp = price;
     }
   });
-  return ans;
+  return tmp;
+};
+
+export const selectPlan = (priceList, qtyAdults, qtyChildren) => {
+  //Assume priceList has pax in an ascending order
+  let ans = undefined;
+  
+  //If qtyAdults < min(priceList.pax)
+  //Choose first plan
+  const cheapestPlan = minPax(priceList, qtyAdults, qtyChildren);
+  if (qtyAdults < cheapestPlan.pax) {
+    return calPrice(cheapestPlan, qtyAdults, qtyChildren)
+  } else {
+    priceList.forEach((price) => {
+      if (price.pax <= qtyAdults) {
+        ans = calPrice(price, qtyAdults, qtyChildren);
+      }
+    });
+    return ans;
+  }
 };
