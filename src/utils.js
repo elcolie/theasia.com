@@ -12,3 +12,15 @@ export const activeVariants = (variants, currDate) => {
   });
   return tmp;
 };
+
+export const convertRawVariants = (variants) => {
+  let tmp = [];
+  variants.forEach((variant) => {
+    const data = {
+      starts_on: new Date(variant.starts_on),
+      ends_on: new Date(variant.ends_on)
+    };
+    tmp.push(data);
+  });
+  return tmp;
+};
