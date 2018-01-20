@@ -12,7 +12,6 @@ export const BookingCalculationReducer = (state = {}, action) => {
       return {
         variants
       };
-      // return action.payload.data.variants;
     case FETCH_PRODUCTS_FAILED:
       //TODO: Implement the exception handler later
       return {

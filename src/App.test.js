@@ -57,5 +57,22 @@ it('test convert rawVariants to accepted variants', () => {
   };
   const variants = [day1, day2];
   const acceptedVariants = convertRawVariants(variants);
-  expect(typeof acceptedVariants[0].getMonth === 'function').toBe(true);
+  expect(typeof acceptedVariants[0].starts_on.getMonth === 'function').toBe(true);
 });
+
+// it('test pax logic', () => {
+//   const plan1 = {
+//     pax: 2,
+//     adult_price: 10,
+//     child_price: 8
+//   };
+//   const plan2 = {
+//     pax: 3,
+//     adult_price: 8,
+//     child_price: 7
+//   };
+//   const priceList = [plan1, plan2];
+//   const qtyAdults = 2;
+//   const qtyChildren = 1;
+//   expect(selectPlan(priceList, qtyAdults, qtyChildren)).toBe(28);
+// });
