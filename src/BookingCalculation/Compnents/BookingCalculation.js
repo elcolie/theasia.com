@@ -10,7 +10,6 @@ class BookingCalculation extends Component {
   }
   
   render() {
-    console.log(this.props.variants);
     return (
       <Fragment>Booking Calculation Component</Fragment>
     )

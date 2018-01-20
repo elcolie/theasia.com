@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {activeVariants, convertRawVariants, inDateTimeRange} from "./utils";
+import {activeVariants, convertRawVariants, inDateTimeRange, selectPlan} from "./utils";
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -60,19 +60,19 @@ it('test convert rawVariants to accepted variants', () => {
   expect(typeof acceptedVariants[0].starts_on.getMonth === 'function').toBe(true);
 });
 
-// it('test pax logic', () => {
-//   const plan1 = {
-//     pax: 2,
-//     adult_price: 10,
-//     child_price: 8
-//   };
-//   const plan2 = {
-//     pax: 3,
-//     adult_price: 8,
-//     child_price: 7
-//   };
-//   const priceList = [plan1, plan2];
-//   const qtyAdults = 2;
-//   const qtyChildren = 1;
-//   expect(selectPlan(priceList, qtyAdults, qtyChildren)).toBe(28);
-// });
+it('test pax logic', () => {
+  const plan1 = {
+    pax: 2,
+    adult_price: 10,
+    child_price: 8
+  };
+  const plan2 = {
+    pax: 3,
+    adult_price: 8,
+    child_price: 7
+  };
+  const priceList = [plan1, plan2];
+  const qtyAdults = 2;
+  const qtyChildren = 1;
+  expect(selectPlan(priceList, qtyAdults, qtyChildren)).toBe(28);
+});

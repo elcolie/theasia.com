@@ -28,7 +28,7 @@ export const convertRawVariants = (variants) => {
 
 //Plain one for shorhand
 export const calPrice = (price, qtyAdults, qtyChildren) => {
-  return price.adult * qtyAdults + price.child_price * qtyChildren;
+  return price.adult_price * qtyAdults + price.child_price * qtyChildren;
 };
 
 export const selectPlan = (priceList, qtyAdults, qtyChildren) => {
