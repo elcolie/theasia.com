@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const inDateTimeRange = (start, end, input) => {
   return (start <= input) && (input <= end);
 };
@@ -31,27 +33,17 @@ export const calPrice = (price, qtyAdults, qtyChildren) => {
   return price.adult_price * qtyAdults + price.child_price * qtyChildren;
 };
 
-export const minPax = (priceList) => {
-  let min = Number.MAX_SAFE_INTEGER;
-  let tmp = undefined;
-  priceList.forEach((price) => {
-    if (price.pax < min) {
-      min = price.pax;  //Change the value
-      tmp = price;
-    }
-  });
-  return tmp;
-};
 
-export const selectPlan = (priceList, qtyAdults, qtyChildren) => {
+export const selectPlan = (rawPriceList, qtyAdults, qtyChildren) => {
   //Assume priceList has pax in an ascending order
+  const priceList = _.orderBy(rawPriceList, ['pax'], ['asc']);
   let ans = undefined;
   
   //If qtyAdults < min(priceList.pax)
   //Choose first plan
-  const cheapestPlan = minPax(priceList, qtyAdults, qtyChildren);
-  if (qtyAdults < cheapestPlan.pax) {
-    return calPrice(cheapestPlan, qtyAdults, qtyChildren)
+  const minimumPax = _.minBy(priceList, 'pax');
+  if (qtyAdults < minimumPax.pax) {
+    return calPrice(minimumPax, qtyAdults, qtyChildren)
   } else {
     priceList.forEach((price) => {
       if (price.pax <= qtyAdults) {
