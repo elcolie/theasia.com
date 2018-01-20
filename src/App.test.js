@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {inDateTimeRange} from "./utils";
+import {activeVariants, inDateTimeRange} from "./utils";
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -42,7 +42,6 @@ it('reducers return only active variants', () => {
   };
   const variants = [day1, day2];
   const d1 = new Date("2018-01-20T09:47:49.309Z");
-  const result = inDateTimeRange(day1.starts_on, day1.ends_on, d1);
-  expect(result).toBe(false);
-
+  const actives = activeVariants(variants, d1);
+  expect(actives.length).toBe(1);
 });
