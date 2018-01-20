@@ -23,30 +23,40 @@ class VariantDropdownList extends Component {
   constructor(...args) {
     super(...args);
     this.state = { value: '--' };
-    this.colors = [{color: 'Red', value: 'ff0000'},
-      {color: 'Green', value: '00ff00'},
-      {color: 'Orange', value: '#FF4500'},
-      {color: 'Blue', value: '0000ff'}];
   }
   
   render() {
     const {variants} = this.props;
     console.log(variants);
-    return (
+    return(
       <Fragment>
         <DropdownList
-          data={this.colors}
+          data={variants}
           value={this.state.value}
-          valueField='color'
-          textField='color'
-          onChange={(value) => {
-              console.log(value);
-              this.setState({ value })
-            }
-          }
+          valueField='id' //Will be name later
+          textField='id'
+          onChange={(value) =>{
+            console.log(value);
+            this.setState({value});
+          }}
         />
       </Fragment>
     )
+    // return (
+    //   <Fragment>
+    //     <DropdownList
+    //       data={this.colors}
+    //       value={this.state.value}
+    //       valueField='color'
+    //       textField='color'
+    //       onChange={(value) => {
+    //           console.log(value);
+    //           this.setState({ value })
+    //         }
+    //       }
+    //     />
+    //   </Fragment>
+    // )
   }
 }
 
