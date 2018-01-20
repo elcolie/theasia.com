@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import _ from 'lodash';
 import App from './App';
 import {activeVariants, convertRawVariants, inDateTimeRange, minPax, selectPlan} from "./utils";
 
@@ -73,14 +72,27 @@ it('test convert rawVariants to accepted variants', () => {
   expect(typeof acceptedVariants[0].starts_on.getMonth === 'function').toBe(true);
 });
 
-it('test pax logic got plan1', () => {
+it('test pax logic got 2 adults 1 child', () => {
   const qtyAdults = 2;
   const qtyChildren = 1;
   expect(selectPlan(priceList, qtyAdults, qtyChildren)).toBe(28);
 });
 
-it('test pax logic got plan2', () => {
+it('test pax logic got 3 adults no children', () => {
   const qtyAdults = 3;
   const qtyChildren = 0;
   expect(selectPlan(priceList, qtyAdults, qtyChildren)).toBe(24);
 });
+
+it('test pax logic got 1 adult 2 children', () => {
+  const qtyAdults = 1;
+  const qtyChildren = 2;
+  expect(selectPlan(priceList, qtyAdults, qtyChildren)).toBe(26);
+});
+
+it('test pax logic got 1 adult 1 children', () => {
+  const qtyAdults = 1;
+  const qtyChildren = 1;
+  expect(selectPlan(priceList, qtyAdults, qtyChildren)).toBe(18);
+});
+
