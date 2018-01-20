@@ -10,6 +10,7 @@ class BookingCalculation extends Component {
   }
   
   render() {
+    console.log(this.props.variants);
     return (
       <Fragment>Booking Calculation Component</Fragment>
     )
@@ -22,6 +23,8 @@ const fetchProducts = () => {
   }
 };
 
+const mapStateToProps = ({variants}, ownProps) =>{
+  return {variants}
+};
 
-
-export default connect(null, {fetchProducts})(BookingCalculation);
+export default connect(mapStateToProps, {fetchProducts})(BookingCalculation);
