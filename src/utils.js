@@ -33,7 +33,6 @@ export const calPrice = (price, qtyAdults, qtyChildren) => {
   return price.adult_price * qtyAdults + price.child_price * qtyChildren;
 };
 
-
 export const selectPlan = (rawPriceList, qtyAdults, qtyChildren) => {
   //Assume priceList has pax in an ascending order
   const priceList = _.orderBy(rawPriceList, ['pax'], ['asc']);
