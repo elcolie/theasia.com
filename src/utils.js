@@ -32,5 +32,11 @@ export const calPrice = (price, qtyAdults, qtyChildren) => {
 };
 
 export const selectPlan = (priceList, qtyAdults, qtyChildren) => {
-  return calPrice(priceList[0], qtyAdults, qtyChildren);
+  let ans = undefined;
+  priceList.forEach((price) => {
+    if (price.pax <= qtyAdults) {
+      ans = calPrice(price, qtyAdults, qtyChildren);
+    }
+  });
+  return ans;
 };
