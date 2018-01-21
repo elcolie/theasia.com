@@ -15,12 +15,11 @@ import momentLocalizer from "react-widgets-moment";
 
 momentLocalizer(moment);
 
-class DateTimePickerContainer extends Component {
+class DatePickerContainer extends Component {
   //Disable and enable base on the parent props
   
   render() {
     const {variant} = this.props;
-    console.log(variant);
     if (variant === BLANK_NAME) {
       return (
         <DateTimePicker
@@ -49,6 +48,17 @@ class DateTimePickerContainer extends Component {
   }
 }
 
+class TimePickerContainer extends Component {
+  //Just for a decoration. It does not involve in pricing
+  render(){
+    return(
+      <DateTimePicker
+        date={false}
+      />
+    )
+  }
+}
+
 //TODO: Rename it to meet the convention project meaning
 class BookingCalculation extends Component {
   constructor(props) {
@@ -61,16 +71,6 @@ class BookingCalculation extends Component {
   }
   
   render() {
-    let minDate = null;
-    let maxDate = null;
-    if (this.state.variant === undefined) {
-      minDate = new Date("2099-12-26T00:00:00.000Z");
-      maxDate = new Date("2100-12-26T00:00:00.000Z");
-    } else {
-      minDate = new Date(this.state.variant.starts_on);
-      maxDate = new Date(this.state.variant.ends_on);
-    }
-    
     return (
       <Fragment>
         <DropdownList
@@ -83,7 +83,8 @@ class BookingCalculation extends Component {
             this.setState({value});
           }}
         />
-        <DateTimePickerContainer variant={this.state.value}/>
+        <DatePickerContainer variant={this.state.value}/>
+        <TimePickerContainer/>
       </Fragment>
     )
   };
