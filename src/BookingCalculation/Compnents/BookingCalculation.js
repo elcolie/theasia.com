@@ -1,20 +1,12 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form'
-import {DropdownList, DateTimePicker} from 'react-widgets'
-import {ADULT, BLANK_NAME, CHILD, FETCH_PRODUCTS, SET_VARIANT} from "../../const";
+import {DateTimePicker, DropdownList} from 'react-widgets'
+import {BLANK_NAME, FETCH_PRODUCTS, SET_VARIANT} from "../../const";
 import 'react-widgets/dist/css/react-widgets.css';
 import moment from 'moment';
 import momentLocalizer from "react-widgets-moment";
 import NumberPickerContainer from "./NumberPickerContainer";
-import PriceTableContainer from "./PriceTable";
-import AdultChildTableContainer from "./AdultChildTableConatainer";
-
-// import Globalize from 'globalize';
-// Globalize.load( require( "cldr-data" ).entireSupplemental() );
-// Globalize.load( require( "cldr-data" ).entireMainFor( "en", "es" ) );
-// Globalize.loadTimeZone( require( "iana-tz-data" ) );
-
 
 momentLocalizer(moment);
 
@@ -93,7 +85,7 @@ class BookingCalculation extends Component {
         />
         <DatePickerContainer variant={this.state.value}/>
         <TimePickerContainer/>
-        <AdultChildTableContainer variant={this.state.value}/>
+        <NumberPickerContainer variant={this.state.value}/>
       </Fragment>
     )
   };

@@ -45,7 +45,7 @@ class PriceTableContainer extends Component {
       return (
         <Fragment>
           <ReactTableDumpComponent data={BLANK_VARIANT_DATA}/>
-          <label>Total Cost: {"cat"}</label>
+          <label>Total Cost: {0}</label>
         </Fragment>
       )
     } else {

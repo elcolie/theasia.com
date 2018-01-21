@@ -10,7 +10,6 @@ simpleNumberLocalizer();
 class NumberPickerContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: BLANK_NAME};
   }
   
   render() {
@@ -37,7 +36,6 @@ class NumberPickerContainer extends Component {
             placeholder={"0"}
             min={0}
             onChange={(value) => {
-              this.setState({value});
               const data = {
                 value,
                 criteria: ADULT
@@ -49,7 +47,6 @@ class NumberPickerContainer extends Component {
             placeholder={"0"}
             min={0}
             onChange={(value) => {
-              this.setState({value});
               const data = {
                 value,
                 criteria: CHILD
