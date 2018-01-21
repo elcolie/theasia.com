@@ -11,12 +11,11 @@ class AdultChildTableContainer extends Component {
   }
   
   render() {
-    console.log(this.props);
     return (
       <Fragment>
         <NumberPickerContainer variant={this.props.variant} criteria={ADULT}/>
         <NumberPickerContainer variant={this.props.variant} criteria={CHILD}/>
-        <PriceTableContainer/>
+        <PriceTableContainer variant={this.props.variant}/>
       </Fragment>
     )
   }

@@ -14,7 +14,6 @@ class NumberPickerContainer extends Component {
   
   render() {
     const {variant} = this.props;
-    console.log(this.props);
     if (variant === BLANK_NAME) {
       return (
         <Fragment>

@@ -1,7 +1,38 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import {BLANK_NAME} from "../../const";
 
+const ReactTableDumpComponent = (props) => {
+  return (
+    <div>
+      <ReactTable
+        showPagination={false}
+        data={props.data}
+        columns={[
+          {
+            Header: "",
+            accessor: "criteria"
+          },
+          {
+            Header: "Price",
+            accessor: "price"
+          },
+          {
+            Header: "Pax",
+            accessor: "pax"
+          },
+          {
+            Header: "Total",
+            accessor: "total"
+          }
+        ]}
+        defaultPageSize={2}
+        className="-striped -highlight"
+      />
+    </div>
+  )
+};
 
 class PriceTableContainer extends Component {
   constructor(props) {
@@ -10,13 +41,13 @@ class PriceTableContainer extends Component {
       data: [
         {
           criteria: "Adult",
-          price: 1656,
-          pax: 2,
-          total: 3312,
+          price: 0,
+          pax: 0,
+          total: 0,
         },
         {
           criteria: "Children",
-          price: 1291,
+          price: 0,
           pax: 0,
           total: 0,
         }
@@ -26,34 +57,15 @@ class PriceTableContainer extends Component {
   
   render() {
     const {data} = this.state;
-    return (
-      <div>
-        <ReactTable
-          showPagination={false}
-          data={data}
-          columns={[
-            {
-              Header: "",
-              accessor: "criteria"
-            },
-            {
-              Header: "Price",
-              accessor: "price"
-            },
-            {
-              Header: "Pax",
-              accessor: "pax"
-            },
-            {
-              Header: "Total",
-              accessor: "total"
-            }
-          ]}
-          defaultPageSize={2}
-          className="-striped -highlight"
-        />
-      </div>
-    );
+    if(this.props.variant === BLANK_NAME){
+      return(
+        <ReactTableDumpComponent data={data}/>
+      )
+    }else{
+      return(
+        <Fragment>Hello</Fragment>
+      )
+    }
   }
 }
 
