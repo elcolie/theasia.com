@@ -8,6 +8,7 @@ import moment from 'moment';
 import momentLocalizer from "react-widgets-moment";
 import NumberPickerContainer from "./NumberPickerContainer";
 import PriceTableContainer from "./PriceTable";
+import AdultChildTableContainer from "./AdultChildTableConatainer";
 
 // import Globalize from 'globalize';
 // Globalize.load( require( "cldr-data" ).entireSupplemental() );
@@ -92,9 +93,7 @@ class BookingCalculation extends Component {
         />
         <DatePickerContainer variant={this.state.value}/>
         <TimePickerContainer/>
-        <NumberPickerContainer variant={this.state.value} criteria={ADULT}/>
-        <NumberPickerContainer variant={this.state.value} criteria={CHILD}/>
-        <PriceTableContainer/>
+        <AdultChildTableContainer variant={this.state.value}/>
       </Fragment>
     )
   };

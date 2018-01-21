@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import simpleNumberLocalizer from 'react-widgets-simple-number';
 import {NumberPicker} from 'react-widgets';
-import {ADULT, BLANK_NAME, SET_ADULT_QTY, SET_CHILD_QTY, SET_QUANTITY} from "../../const";
+import {ADULT, BLANK_NAME, SET_ADULT_QTY, SET_CHILD_QTY} from "../../const";
 
 simpleNumberLocalizer();
 

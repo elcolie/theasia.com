@@ -13,14 +13,12 @@ class PriceTableContainer extends Component {
           price: 1656,
           pax: 2,
           total: 3312,
-          visits: -1
         },
         {
           criteria: "Children",
           price: 1291,
           pax: 0,
           total: 0,
-          visits: -1
         }
       ]
     };
