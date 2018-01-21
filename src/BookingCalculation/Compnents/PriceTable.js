@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-import {BLANK_NAME} from "../../const";
+import {BLANK_NAME, BLANK_VARIANT_DATA} from "../../const";
 
 const ReactTableDumpComponent = (props) => {
   return (
@@ -37,33 +37,40 @@ const ReactTableDumpComponent = (props) => {
 class PriceTableContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: [
-        {
-          criteria: "Adult",
-          price: 0,
-          pax: 0,
-          total: 0,
-        },
-        {
-          criteria: "Children",
-          price: 0,
-          pax: 0,
-          total: 0,
-        }
-      ]
-    };
   }
   
   render() {
-    const {data} = this.state;
-    if(this.props.variant === BLANK_NAME){
-      return(
-        <ReactTableDumpComponent data={data}/>
+    if (this.props.variant === BLANK_NAME) {
+      return (
+        <ReactTableDumpComponent data={BLANK_VARIANT_DATA}/>
       )
-    }else{
-      return(
-        <Fragment>Hello</Fragment>
+    } else {
+      console.log(this.props);
+      const {
+        adultQty,
+        childQty,
+        selectedVariant: {
+          adult_price,
+          child_price,
+          pax
+        }
+      } = this.props;
+      const data = [{
+          criteria: "Adult",
+          price: adult_price,
+          pax: pax,
+          total: adultQty * adult_price,
+        },
+        {
+          criteria: "Children",
+          price: child_price,
+          pax: 0,
+          total: 0,
+        }
+      ];
+      console.log(data);
+      return (
+        <ReactTableDumpComponent data={data}/>
       )
     }
   }
