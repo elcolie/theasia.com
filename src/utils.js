@@ -20,6 +20,7 @@ export const convertRawVariants = (variants) => {
   variants.forEach((variant) => {
     const data = {
       ...variant,
+      name: (!variant.name ? 'No Name' : variant.name),
       starts_on: new Date(variant.starts_on),
       ends_on: new Date(variant.ends_on)
     };

@@ -54,7 +54,6 @@ class TimePickerContainer extends Component {
   }
 }
 
-//TODO: Rename it to meet the convention project meaning
 class BookingCalculation extends Component {
   constructor(props) {
     super(props);
@@ -71,8 +70,8 @@ class BookingCalculation extends Component {
         <DropdownList
           data={this.props.variants}
           value={this.state.value}
-          valueField='id' //Will be name later
-          textField='id'
+          valueField='id'
+          textField='name'
           onChange={(value) => {
             //Must use action here to communicate with the rest of the widget
             //but setState need to remain. Because of onChange()
@@ -108,6 +107,7 @@ const mapStateToProps = ({variants}, ownProps) => {
   return {...variants}
 };
 
+//Wiring for the next future when actual booking committed
 const validate = (values) => {
   const errors = {};
   return errors;

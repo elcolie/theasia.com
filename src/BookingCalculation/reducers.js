@@ -12,11 +12,6 @@ export const BookingCalculationReducer = (state = {}, action) => {
       const currentDate = new Date();
       const rawVariants = action.payload.data.variants;
       const acceptedVariants = convertRawVariants(rawVariants);
-      // return {
-      //   variants: acceptedVariants
-      // };
-      
-      //TODO: uncomment these when ready. I need more variants to fill the dropdown list
       const variants = activeVariants(acceptedVariants, currentDate);
       return {
         variants
