@@ -1,7 +1,8 @@
 import React, {Component, Fragment} from 'react';
+import {connect} from 'react-redux';
 import simpleNumberLocalizer from 'react-widgets-simple-number';
 import {NumberPicker} from 'react-widgets';
-import {BLANK_NAME} from "../../const";
+import {ADULT, BLANK_NAME, SET_ADULT_QTY, SET_CHILD_QTY, SET_QUANTITY} from "../../const";
 
 simpleNumberLocalizer();
 
@@ -13,6 +14,7 @@ class NumberPickerContainer extends Component {
   
   render() {
     const {variant} = this.props;
+    console.log(this.props);
     if (variant === BLANK_NAME) {
       return (
         <Fragment>
@@ -29,8 +31,12 @@ class NumberPickerContainer extends Component {
             placeholder={"0"}
             min={0}
             onChange={(value) => {
-              console.log(value);
               this.setState({value});
+              const data = {
+                value,
+                criteria: this.props.criteria
+              };
+              this.props.setQty(data);
             }}
           />
         </Fragment>
@@ -39,4 +45,24 @@ class NumberPickerContainer extends Component {
   }
 }
 
-export default NumberPickerContainer;
+const setQty = (givenInput) => {
+  const {value, criteria} = givenInput;
+  if (criteria === ADULT) {
+    return {
+      type: SET_ADULT_QTY,
+      payload: value
+    }
+  } else {
+    return {
+      type: SET_CHILD_QTY,
+      payload: value
+    }
+  }
+};
+
+const mapStateToProps = (newProps, ownProps) => {
+  const {adultQty, childQty, selectedVariant} = newProps;
+  return {...adultQty, ...childQty, ...selectedVariant};
+};
+
+export default connect(mapStateToProps, {setQty})(NumberPickerContainer);

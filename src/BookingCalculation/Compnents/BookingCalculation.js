@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form'
-import { DropdownList, DateTimePicker } from 'react-widgets'
-import {BLANK_NAME, FETCH_PRODUCTS} from "../../const";
+import {DropdownList, DateTimePicker} from 'react-widgets'
+import {ADULT, BLANK_NAME, CHILD, FETCH_PRODUCTS, SET_VARIANT} from "../../const";
 import 'react-widgets/dist/css/react-widgets.css';
 import moment from 'moment';
 import momentLocalizer from "react-widgets-moment";
@@ -52,8 +52,8 @@ class DatePickerContainer extends Component {
 
 class TimePickerContainer extends Component {
   //Just for a decoration. It does not involve in pricing
-  render(){
-    return(
+  render() {
+    return (
       <DateTimePicker
         date={false}
       />
@@ -83,19 +83,29 @@ class BookingCalculation extends Component {
           onChange={(value) => {
             //Must use action here to communicate with the rest of the widget
             //but setState need to remain. Because of onChange()
-            console.log(value);
+            //When do the console.log in the child component. Do not puzzle with `variant` and `selectedVariant`
+            //`variant` is passed by props. `selectedVariant` is passed by `action`
+            //In order to communicate with other widget use `action`
             this.setState({value});
+            this.props.setVariant(value);
           }}
         />
         <DatePickerContainer variant={this.state.value}/>
         <TimePickerContainer/>
-        <NumberPickerContainer variant={this.state.value}/>
-        <NumberPickerContainer variant={this.state.value}/>
+        <NumberPickerContainer variant={this.state.value} criteria={ADULT}/>
+        <NumberPickerContainer variant={this.state.value} criteria={CHILD}/>
         <PriceTableContainer/>
       </Fragment>
     )
   };
 }
+
+const setVariant = (variant) => {
+  return {
+    type: SET_VARIANT,
+    payload: variant
+  }
+};
 
 const fetchProducts = () => {
   return {
@@ -116,5 +126,5 @@ export default reduxForm({
   validate,
   form: 'PostsPricingForm'
 })(
-  connect(mapStateToProps, {fetchProducts})(BookingCalculation)
+  connect(mapStateToProps, {fetchProducts, setVariant})(BookingCalculation)
 );
