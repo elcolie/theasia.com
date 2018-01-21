@@ -81,6 +81,8 @@ class BookingCalculation extends Component {
           valueField='id' //Will be name later
           textField='id'
           onChange={(value) => {
+            //Must use action here to communicate with the rest of the widget
+            //but setState need to remain. Because of onChange()
             console.log(value);
             this.setState({value});
           }}
