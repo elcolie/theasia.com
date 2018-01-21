@@ -15,7 +15,6 @@ class NumberPickerContainer extends Component {
   
   render() {
     const {variant} = this.props;
-    // console.log(this.props);
     if (variant === BLANK_NAME) {
       return (
         <Fragment>
@@ -31,9 +30,6 @@ class NumberPickerContainer extends Component {
         </Fragment>
       )
     } else {
-      // console.log(this.props.selectedVariant.price[0]);
-      // console.log(this.props.adultQty);
-      // console.log(this.props.childQty);
       const {pax, adult_price, child_price} = this.props.selectedVariant.price[0];
       return (
         <Fragment>

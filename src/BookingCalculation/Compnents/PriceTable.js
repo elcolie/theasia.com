@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import {BLANK_NAME, BLANK_VARIANT_DATA} from "../../const";
+import {calPrice} from "../../utils";
 
 const ReactTableDumpComponent = (props) => {
   return (
@@ -42,10 +43,12 @@ class PriceTableContainer extends Component {
   render() {
     if (this.props.variant === BLANK_NAME) {
       return (
-        <ReactTableDumpComponent data={BLANK_VARIANT_DATA}/>
+        <Fragment>
+          <ReactTableDumpComponent data={BLANK_VARIANT_DATA}/>
+          <label>Total Cost: {"cat"}</label>
+        </Fragment>
       )
     } else {
-      console.log(this.props);
       const {
         adultQty,
         childQty,
@@ -56,11 +59,11 @@ class PriceTableContainer extends Component {
         }
       } = this.props;
       const data = [{
-          criteria: "Adult",
-          price: adult_price,
-          pax: pax,
-          total: adultQty * adult_price,
-        },
+        criteria: "Adult",
+        price: adult_price,
+        pax: pax,
+        total: adultQty * adult_price,
+      },
         {
           criteria: "Children",
           price: child_price,
@@ -68,9 +71,13 @@ class PriceTableContainer extends Component {
           total: 0,
         }
       ];
-      console.log(data);
+      const price = {adult_price, child_price};
+      const totalPrice = calPrice(price, adultQty, childQty);
       return (
-        <ReactTableDumpComponent data={data}/>
+        <Fragment>
+          <ReactTableDumpComponent data={data}/>
+          <label>Total Cost: {totalPrice}</label>
+        </Fragment>
       )
     }
   }
