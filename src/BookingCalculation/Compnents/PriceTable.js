@@ -1,8 +1,6 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-
-
 
 
 class PriceTableContainer extends Component {
@@ -11,17 +9,25 @@ class PriceTableContainer extends Component {
     this.state = {
       data: [
         {
-          firstName: "Fuck You Noisy Motocycle",
-          lastName: "Suck my dick",
-          age: 25,
-          status: "Dead",
+          criteria: "Adult",
+          price: 1656,
+          pax: 2,
+          total: 3312,
+          visits: -1
+        },
+        {
+          criteria: "Children",
+          price: 1291,
+          pax: 0,
+          total: 0,
           visits: -1
         }
       ]
     };
   }
+  
   render() {
-    const { data } = this.state;
+    const {data} = this.state;
     return (
       <div>
         <ReactTable
@@ -29,43 +35,23 @@ class PriceTableContainer extends Component {
           data={data}
           columns={[
             {
-              Header: "Name",
-              columns: [
-                {
-                  Header: "First Name",
-                  accessor: "firstName"
-                },
-                {
-                  Header: "Last Name",
-                  id: "lastName",
-                  accessor: d => d.lastName
-                }
-              ]
+              Header: "",
+              accessor: "criteria"
             },
             {
-              Header: "Info",
-              columns: [
-                {
-                  Header: "Age",
-                  accessor: "age"
-                },
-                {
-                  Header: "Status",
-                  accessor: "status"
-                }
-              ]
+              Header: "Price",
+              accessor: "price"
             },
             {
-              Header: 'Stats',
-              columns: [
-                {
-                  Header: "Visits",
-                  accessor: "visits"
-                }
-              ]
+              Header: "Pax",
+              accessor: "pax"
+            },
+            {
+              Header: "Total",
+              accessor: "total"
             }
           ]}
-          defaultPageSize={10}
+          defaultPageSize={2}
           className="-striped -highlight"
         />
       </div>
