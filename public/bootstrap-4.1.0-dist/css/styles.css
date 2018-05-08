@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-.combo-box{
+.combo-box {
   margin: 10px;
 }
 
@@ -15,22 +15,24 @@
   border: 1px solid gray;
 }
 
-.date-time-group{
+.date-time-group {
   width: 200px;
 }
 
-.container-datetime{
+.container-datetime {
   position: relative;
 }
 
-.my-date-picker{
-  /*float: left;*/
+.my-date-picker {
+  position: relative;
+  display: inline-block;
   width: 200px;
-  /*padding: 10px;*/
+  padding: 10px;
 }
 
-.time-picker{
-  /*float: right;*/
+.time-picker {
+  position: relative;
+  display: inline-block;
   width: 200px;
-  /*padding: 10px;*/
+  padding: 10px;
 }
