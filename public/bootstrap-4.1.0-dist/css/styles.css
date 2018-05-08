@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+}
+
+.combo-box{
+  margin: 10px;
+}
+
+.container {
+  position: relative;
+  width: 500px;
+  height: 600px;
+  margin: 4px;
+  padding: 10px;
+  border: 1px solid gray;
+}
+
+.date-time-group{
+  width: 200px;
+}
+
+.container-datetime{
+  position: relative;
+}
+
+.my-date-picker{
+  /*float: left;*/
+  width: 200px;
+  /*padding: 10px;*/
+}
+
+.time-picker{
+  /*float: right;*/
+  width: 200px;
+  /*padding: 10px;*/
+}

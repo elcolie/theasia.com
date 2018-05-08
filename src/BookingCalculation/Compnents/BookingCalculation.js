@@ -67,24 +67,38 @@ class BookingCalculation extends Component {
   render() {
     return (
       <Fragment>
-        <DropdownList
-          data={this.props.variants}
-          value={this.state.value}
-          valueField='id'
-          textField='name'
-          onChange={(value) => {
-            //Must use action here to communicate with the rest of the widget
-            //but setState need to remain. Because of onChange()
-            //When do the console.log in the child component. Do not puzzle with `variant` and `selectedVariant`
-            //`variant` is passed by props. `selectedVariant` is passed by `action`
-            //In order to communicate with other widget use `action`
-            this.setState({value});
-            this.props.setVariant(value);
-          }}
-        />
-        <DatePickerContainer variant={this.state.value}/>
-        <TimePickerContainer/>
-        <NumberPickerContainer variant={this.state.value}/>
+        <div className="container">
+          <div className="combo-box">
+            <DropdownList
+              data={this.props.variants}
+              value={this.state.value}
+              valueField='id'
+              textField='name'
+              onChange={(value) => {
+                //Must use action here to communicate with the rest of the widget
+                //but setState need to remain. Because of onChange()
+                //When do the console.log in the child component. Do not puzzle with `variant` and `selectedVariant`
+                //`variant` is passed by props. `selectedVariant` is passed by `action`
+                //In order to communicate with other widget use `action`
+                this.setState({value});
+                this.props.setVariant(value);
+              }}
+            />
+          </div>
+          
+          <div className="container-datetime">
+            <div className="my-date-picker">
+              <label>Select Date</label>
+              <DatePickerContainer variant={this.state.value}/>
+            </div>
+            <div className="time-picker">
+              <label>Select Time</label>
+              <TimePickerContainer/>
+            </div>
+          </div>
+          
+          <NumberPickerContainer variant={this.state.value}/>
+        </div>
       </Fragment>
     )
   };
