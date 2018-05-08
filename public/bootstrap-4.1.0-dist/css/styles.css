@@ -33,6 +33,6 @@
 .time-picker {
   position: relative;
   display: inline-block;
-  width: 200px;
-  padding: 10px;
+  width: 150px;
+  margin-left: 118px;
 }
